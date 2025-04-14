@@ -24,17 +24,17 @@ hthi_breaks = [-.01, .4, .7, 1.01] # coarse = [-.01, .4, .7, 1.01], fine = [-.01
 min_hpu_size = 20 # in pixels - each HPU will have at least this many pixels
 
 # Path parameters
-path_bounding_box = r"X:\Research\CIMMID\Data\Hydropop Layers\Finals\toronto_coarse\roi.gpkg" # shapefile of ROI
-path_results = r'X:\Research\CIMMID\Data\Hydropop Layers\Finals\toronto_coarse' # folder to store results
+path_bounding_box = r"X:\Research\EpiEarth\Data\Hydropop Layers\Finals\toronto_coarse\roi.gpkg" # shapefile of ROI
+path_results = r'X:\Research\EpiEarth\Data\Hydropop Layers\Finals\toronto_coarse' # folder to store results
 run_name = 'toronto_coarse' # string to prepend to exports
-gee_asset = 'projects/cimmid/assets/toronto_coarse_hpus' # the asset path to the hydropop shapefile--this might not be known beforehand but is created upon asset loading to GEE
-gdrive_folder_name = 'CIMMID_{}'.format(run_name)
+gee_asset = 'projects/epiearth/assets/toronto_coarse_hpus' # the asset path to the hydropop shapefile--this might not be known beforehand but is created upon asset loading to GEE
+gdrive_folder_name = 'EpiEarth_{}'.format(run_name)
 
 """ Pseduo-fixed parameters/variables """
 # Paths to data
-path_hthi = r"X:\Research\CIMMID\Data\Hydropop Layers\Hydrotopo Index\hydrotopo_hab_index.tif"
-path_pop = r"X:\Research\CIMMID\Data\Hydropop Layers\pop_density_americas.tif"
-path_gee_csvs = r'X:\Research\CIMMID\Data\Hydropop Layers\Finals\toronto_coarse\gee' 
+path_hthi = r"X:\Research\EpiEarth\Data\Hydropop Layers\Hydrotopo Index\hydrotopo_hab_index.tif"
+path_pop = r"X:\Research\EpiEarth\Data\Hydropop Layers\pop_density_americas.tif"
+path_gee_csvs = r'X:\Research\EpiEarth\Data\Hydropop Layers\Finals\toronto_coarse\gee' 
 
 """ Path preparation """
 path_hpu_class_raster = os.path.join(path_results, '{}_hpu_classes.tif'.format(run_name))
@@ -152,12 +152,12 @@ for key in datasets.keys():
 hpus.to_file(path_hpu_gpkg, driver='GPKG')
 
 # Overlay watersheds
-path_hpus = r"X:\Research\CIMMID\Data\Hydropop Layers\Finals\toronto_coarse\toronto_coarse_hpus.shp"
-path_watersheds = r"X:\Research\CIMMID\Data\Watersheds\Toronto\initial_basins.gpkg"
+path_hpus = r"X:\Research\EpiEarth\Data\Hydropop Layers\Finals\toronto_coarse\toronto_coarse_hpus.shp"
+path_watersheds = r"X:\Research\EpiEarth\Data\Watersheds\Toronto\initial_basins.gpkg"
 hpus = gpd.read_file(path_hpus)
 watersheds = gpd.read_file(path_watersheds)
 df = hut.overlay_watersheds(hpus, watersheds)
-df.to_csv(r'X:\Research\CIMMID\Data\Hydropop Layers\Finals\toronto_coarse\watershed_info.csv', index=False)
+df.to_csv(r'X:\Research\EpiEarth\Data\Hydropop Layers\Finals\toronto_coarse\watershed_info.csv', index=False)
         
 
 

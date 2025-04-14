@@ -11,7 +11,7 @@ import numpy as np
 from skimage import morphology, measure, util
 
 # Read the watermask image
-path = r"X:\Research\CIMMID\Data\Hydropop Layers\Watermask\gsw_1_4_occ_90_byte_americas_only.tif"
+path = r"X:\Research\EpiEarth\Data\Hydropop Layers\Watermask\gsw_1_4_occ_90_byte_americas_only.tif"
 gdobj = gdal.Open(path)
 I = gdobj.ReadAsArray()
 

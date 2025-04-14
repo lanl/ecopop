@@ -8,7 +8,7 @@ Script for preparing Geotiffs needed for HP creation.
 """
 import sys
 sys.path.append(r'C:\Users\Jon\Desktop\Research\DR Reserve\Code')
-sys.path.append(r'C:\Users\Jon\Desktop\Research\CIMMID\hydropop\make_hpus')
+sys.path.append(r'C:\Users\Jon\Desktop\Research\EpiEarth\hydropop\make_hpus')
 import hp_utils as hut
 from osgeo import gdal
 from matplotlib import pyplot as plt
@@ -18,11 +18,11 @@ from scipy.cluster.vq import kmeans2
 
 # Clip worldpop downloaded from GEE
 path_wpop = r"C:\Users\Jon\Desktop\wpop_2020_1k-0000000000-0000000000.tif"
-path_hthi = r"C:\Users\Jon\Desktop\Research\CIMMID\Data\Hydropop Layers\Hydrotopo Index\hydrotopo_hab_index.tif"
-path_pop_americas = r"C:\Users\Jon\Desktop\Research\CIMMID\Data\Hydropop Layers\pop_density_americas.tif"
+path_hthi = r"C:\Users\Jon\Desktop\Research\EpiEarth\Data\Hydropop Layers\Hydrotopo Index\hydrotopo_hab_index.tif"
+path_pop_americas = r"C:\Users\Jon\Desktop\Research\EpiEarth\Data\Hydropop Layers\pop_density_americas.tif"
 # hut.fit_geotiff_into_another(path_hthi, path_wpop, path_pop_americas, dtype='Float32', matchres=True, src_nodata=None, dst_nodata=None, resampling='bilinear')
 
-path_hthi = r"C:\Users\Jon\Desktop\Research\CIMMID\Data\Hydropop Layers\Hydrotopo Index\hydrotopo_hab_index.tif"
+path_hthi = r"C:\Users\Jon\Desktop\Research\EpiEarth\Data\Hydropop Layers\Hydrotopo Index\hydrotopo_hab_index.tif"
 path_pop = r"C:\Users\Jon\Desktop\Research\DR Reserve\Data\MHI Layers\pop_density_1k.tif"
 
 

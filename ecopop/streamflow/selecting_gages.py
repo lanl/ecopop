@@ -36,11 +36,11 @@ gage_locs["end_date"] = gage_locs["end_date"].astype(str)
 basins["start_date"] = basins["start_date"].astype(str)
 basins["end_date"] = basins["end_date"].astype(str)
 
-# gage_locs.to_file(r'X:\Research\CIMMID\Data\Hydropop Layers\Finals\na_10k\gage_selection\na_10k_gages.gpkg', driver='GPKG')
-# basins.to_file(r'X:\Research\CIMMID\Data\Hydropop Layers\Finals\na_10k\gage_selection\na_10k_basins.gpkg', driver='GPKG')
+# gage_locs.to_file(r'X:\Research\EpiEarth\Data\Hydropop Layers\Finals\na_10k\gage_selection\na_10k_gages.gpkg', driver='GPKG')
+# basins.to_file(r'X:\Research\EpiEarth\Data\Hydropop Layers\Finals\na_10k\gage_selection\na_10k_basins.gpkg', driver='GPKG')
 
 # # Updating to fix end_date
-# current_gages = r"X:\Research\CIMMID\Data\Hydropop Layers\Finals\na_10k\gage_selection\trap_data_basins.gpkg"
+# current_gages = r"X:\Research\EpiEarth\Data\Hydropop Layers\Finals\na_10k\gage_selection\trap_data_basins.gpkg"
 # current_gages = gpd.read_file(current_gages)
 # gages = es.get_gages(current_gages['id_gage'].values.tolist())
 

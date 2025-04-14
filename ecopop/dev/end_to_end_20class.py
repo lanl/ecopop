@@ -7,7 +7,7 @@ Created on Wed May 25 09:30:14 2022
 
 import os
 import sys
-sys.path.append(r'X:\Research\CIMMID\hydropop\make_hpus')
+sys.path.append(r'X:\Research\EpiEarth\hydropop\make_hpus')
 import hp_class as hpc
 import hp_utils as hut
 # import gee_stats as gee
@@ -21,10 +21,10 @@ import numpy as np
 
 """ Pseduo-fixed parameters/variables """
 # Paths to data
-path_hthi = r"X:\Research\CIMMID\Data\Hydropop Layers\Hydrotopo Index\hydrotopo_hab_index.tif"
-path_pop = r"X:\Research\CIMMID\Data\Hydropop Layers\pop_density_americas.tif"
-path_gee_csvs = r'X:\Research\CIMMID\Data\Hydropop Layers\Finals\toronto_new_hpu_method\gee' 
-path_watermask = r"X:\Research\CIMMID\Data\Hydropop Layers\Watermask\hydrolakes_areas_americas.tif"
+path_hthi = r"X:\Research\EpiEarth\Data\Hydropop Layers\Hydrotopo Index\hydrotopo_hab_index.tif"
+path_pop = r"X:\Research\EpiEarth\Data\Hydropop Layers\pop_density_americas.tif"
+path_gee_csvs = r'X:\Research\EpiEarth\Data\Hydropop Layers\Finals\toronto_new_hpu_method\gee' 
+path_watermask = r"X:\Research\EpiEarth\Data\Hydropop Layers\Watermask\hydrolakes_areas_americas.tif"
 
 """ Adjustable parameters """
 # HPU creation parameters
@@ -32,11 +32,11 @@ pop_breaks = [-11, -8, -4, -.5, 100] # coarse = [-11, -10, -4, 0, 100], fine =  
 hthi_breaks = [-.01, 0.2, 0.4, 0.6, 0.75, 1.01] # coarse = [-.01, .4, .7, 1.01], fine = [-.01, 0.3, 0.55, 0.75, 0.9, 1.01]
 
 # Path parameters
-path_bounding_box = r"X:\Research\CIMMID\Data\Hydropop Layers\Finals\na_10k\bounding_box.gpkg" # shapefile of ROI
-path_results = r'X:\Research\CIMMID\Data\Hydropop Layers\Finals\na_20class_2' # folder to store results
+path_bounding_box = r"X:\Research\EpiEarth\Data\Hydropop Layers\Finals\na_10k\bounding_box.gpkg" # shapefile of ROI
+path_results = r'X:\Research\EpiEarth\Data\Hydropop Layers\Finals\na_20class_2' # folder to store results
 run_name = 'na_20class_2' # string to prepend to exports
-gee_asset = 'projects/cimmid/assets/na_20class' # the asset path to the hydropop shapefile--this might not be known beforehand but is created upon asset loading to GEE
-gdrive_folder_name = 'CIMMID_{}'.format(run_name)
+gee_asset = 'projects/epiearth/assets/na_20class' # the asset path to the hydropop shapefile--this might not be known beforehand but is created upon asset loading to GEE
+gdrive_folder_name = 'EpiEarth_{}'.format(run_name)
 
 """ Area calcs """
 max_waterbody_size = 500 # square km
@@ -168,7 +168,7 @@ hpus.to_file(paths['hpu_gpkg'], driver='GPKG')
 
 # Export watershed/gage information - keep out of class since this is somewhat
 # external...for now
-path_watersheds = r"X:\Research\CIMMID\Data\Watersheds\Toronto\initial_basins.gpkg"
+path_watersheds = r"X:\Research\EpiEarth\Data\Watersheds\Toronto\initial_basins.gpkg"
 hpus = gpd.read_file(paths['hpu_gpkg'])
 watersheds = gpd.read_file(path_watersheds)
 df = hut.overlay_watersheds(hpus, watersheds)

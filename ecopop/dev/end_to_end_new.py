@@ -185,7 +185,7 @@ def end_to_end_new(
 
     path_results = r"results/" + run_name  # folder to store results
     gee_asset = "projects/ee-rabpro/assets/" + run_name + "_hpus"
-    gdrive_folder_name = "CIMMID_{}".format(run_name)
+    gdrive_folder_name = "EpiEarth_{}".format(run_name)
     path_gee_csvs = r"results/" + run_name + "/gee"
 
     ## Pseduo-fixed parameters/variables """

@@ -7,17 +7,17 @@ Created on Wed Mar  9 14:55:43 2022
 from osgeo import gdal
 import numpy as np
 import sys
-sys.path.append(r'X:\Research\CIMMID\ecopop\make_hpus')
+sys.path.append(r'X:\Research\EpiEarth\ecopop\make_hpus')
 import hp_class as hpc
 from matplotlib import pyplot as plt
 import matplotlib.patches as mpatches
 
 
 # Paths to data
-path_hthi = r"X:\Research\CIMMID\Data\Hydropop Layers\Hydrotopo Index\hydrotopo_hab_index.tif"
-path_pop = r"X:\Research\CIMMID\Data\Hydropop Layers\pop_density_americas.tif"
-path_bounding_box = r"X:\Research\CIMMID\Data\Hydropop Layers\Finals\hpu_iquitos_1\iquitos_1_roi.shp"
-path_bounding_box = r"X:\Research\CIMMID\Data\Hydropop Layers\Finals\hpu_tor_1\roi.shp"
+path_hthi = r"X:\Research\EpiEarth\Data\Hydropop Layers\Hydrotopo Index\hydrotopo_hab_index.tif"
+path_pop = r"X:\Research\EpiEarth\Data\Hydropop Layers\pop_density_americas.tif"
+path_bounding_box = r"X:\Research\EpiEarth\Data\Hydropop Layers\Finals\hpu_iquitos_1\iquitos_1_roi.shp"
+path_bounding_box = r"X:\Research\EpiEarth\Data\Hydropop Layers\Finals\hpu_tor_1\roi.shp"
 
 
 # Histogram of log population for all Americas

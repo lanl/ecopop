@@ -7,7 +7,7 @@ Created on Wed May 25 09:30:14 2022
 
 import os
 import sys
-sys.path.append(r'X:\Research\CIMMID\hydropop\make_hpus')
+sys.path.append(r'X:\Research\EpiEarth\hydropop\make_hpus')
 import hp_class as hpc
 import hp_utils as hut
 # import gee_stats as gee
@@ -21,9 +21,9 @@ import numpy as np
 
 """ Pseduo-fixed parameters/variables """
 # Paths to data
-path_hthi = r"X:\Research\CIMMID\Data\Hydropop Layers\Hydrotopo Index\hydrotopo_hab_index.tif"
-path_pop = r"X:\Research\CIMMID\Data\Hydropop Layers\pop_density_americas.tif"
-path_watermask = r"X:\Research\CIMMID\Data\Hydropop Layers\Watermask\hydrolakes_areas_americas.tif"
+path_hthi = r"X:\Research\EpiEarth\Data\Hydropop Layers\Hydrotopo Index\hydrotopo_hab_index.tif"
+path_pop = r"X:\Research\EpiEarth\Data\Hydropop Layers\pop_density_americas.tif"
+path_watermask = r"X:\Research\EpiEarth\Data\Hydropop Layers\Watermask\hydrolakes_areas_americas.tif"
 
 """ Adjustable parameters """
 # HPU creation parameters
@@ -34,10 +34,10 @@ hthi_breaks = [-.01, .4, .7, 1.01] # coarse = [-.01, .4, .7, 1.01], fine = [-.01
 # max_waterbody_size = target_hpu_size # Waterbodies bigger than this will be masked
 
 # Path parameters
-path_bounding_box = r"X:\Research\CIMMID\Data\Hydropop Layers\Finals\na_10k\bounding_box.gpkg" # shapefile of ROI
-path_results = r'X:\Research\CIMMID\Data\Hydropop Layers\Finals\na_10k' # folder to store results
+path_bounding_box = r"X:\Research\EpiEarth\Data\Hydropop Layers\Finals\na_10k\bounding_box.gpkg" # shapefile of ROI
+path_results = r'X:\Research\EpiEarth\Data\Hydropop Layers\Finals\na_10k' # folder to store results
 run_name = 'na_10k' # string to prepend to exports
-gdrive_folder_name = 'CIMMID_{}'.format(run_name)
+gdrive_folder_name = 'EpiEarth_{}'.format(run_name)
 
 """ Area calcs """
 max_waterbody_size = 1000 # square km, maximum size to be included in HPUs (anything larger is NoData)
@@ -113,7 +113,7 @@ hpus_shp.crs = hpugen.hpus.crs
 hpus_shp.to_file(paths['hpu_shapefile']) # shapefile needed to upload to GEE
 
 """ STOP. Here you need to upload the hpu shapefile as a GEE asset. """
-gee_asset = 'projects/cimmid/assets/na_10k_hpus' # the asset path to the hydropop shapefile
+gee_asset = 'projects/epiearth/assets/na_10k_hpus' # the asset path to the hydropop shapefile
 
 """ Update the gee_asset variable. """
 import gee_stats as gee
@@ -130,7 +130,7 @@ urls, tasks = rabpro.basin_stats.compute(Datasets,
                            folder=gdrive_folder_name)
 
 """ STOP. Download the GEE exports (csvs) to path_gee_csvs """
-path_gee_csvs = r'X:\Research\CIMMID\Data\Hydropop Layers\Finals\na_10k\gee_exports'
+path_gee_csvs = r'X:\Research\EpiEarth\Data\Hydropop Layers\Finals\na_10k\gee_exports'
 
 """ Aggregate the csvs """
 hpus = gpd.read_file(paths['hpu_gpkg'])
@@ -174,18 +174,18 @@ hpus.to_file(paths['hpu_gpkg'], driver='GPKG')
 
 # Export watershed/gage information - keep out of class since this is somewhat
 # external...for now
-path_watersheds = r"X:\Research\CIMMID\Data\Hydropop Layers\Finals\na_10k\gage_selection\trap_data_basins_s001.shp"
+path_watersheds = r"X:\Research\EpiEarth\Data\Hydropop Layers\Finals\na_10k\gage_selection\trap_data_basins_s001.shp"
 hpus = gpd.read_file(paths['hpu_gpkg'])
 watersheds = gpd.read_file(path_watersheds)
 df = hut.overlay_watersheds(hpus, watersheds, check_coverage=False)
 df.rename({'area_sum':'area_hpu_km2'}, axis=1, inplace=True)
 df.to_csv(paths['gages'], index=False)
-df.to_csv(r"X:\Research\CIMMID\Data\Hydropop Layers\Finals\na_10k\na_10k_gages.csv", index=False)        
+df.to_csv(r"X:\Research\EpiEarth\Data\Hydropop Layers\Finals\na_10k\na_10k_gages.csv", index=False)        
 
 # Export hpus that cover gages
 hpus_gages = hpus[hpus['hpu_id'].isin(df['hpu_id'])]
 hpus_gages = hpus_gages[['hpu_id', 'geometry']]
-hpus_gages.to_file(r'X:\Research\CIMMID\Data\Hydropop Layers\Finals\na_10k\na_10k_hpu_gages.shp')
+hpus_gages.to_file(r'X:\Research\EpiEarth\Data\Hydropop Layers\Finals\na_10k\na_10k_hpu_gages.shp')
 
 
 
